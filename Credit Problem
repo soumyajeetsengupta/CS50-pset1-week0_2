@@ -1,0 +1,380 @@
+#include<cs50.h>
+#include<stdio.h>
+
+void card(long a);
+void checksum(long a);
+int main(void)
+{
+    long ccnum;
+    do
+    {
+        ccnum = get_long("Enter your credit card number: ");
+    }
+    while(ccnum < 1000000000 && ccnum < 100000000000000);
+    checksum(ccnum);
+
+}
+
+//Algorithm.
+void checksum(long a)
+{
+    long z,b,l,g,k,d,e=0,c=0,i=0,j=0,m=0;
+    int f;
+    long arr[15];
+    d=a;
+    z=a;
+   //VISA.
+   //16 Digit Verification.
+    if(a >= 4000000000000000 && a < 5000000000000000)
+    {
+        while(d>0)
+        {
+            g=d%100;
+            b=d%10;
+            l=g-b;
+            l=l/10;
+            k=l*2;
+            if(k>9)
+            {
+                i=k%10;
+                j=k%100;
+                m=j-i;
+                m=m/10;
+                k=i+m;
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+            else
+            {
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+
+        }
+
+        k=0;
+        while(z>0)
+        {
+           g=z%10;
+           b=z%1000;
+           m=z%100;
+           i=b-m;
+           z=z/100 ;
+           k=k+g;
+        }
+
+        f=(k+e);
+
+    while(f>0)
+    {
+        g=f%10;
+        if(g==0)
+        {
+            card(a);
+            break;
+        }
+        else
+        {
+            printf("INVALID\n");
+            break;
+        }
+    }
+    }
+
+//13 Digit Verification.
+else if(a >= 4000000000000 && a < 5000000000000)
+{
+        while(d>0)
+        {
+            g=d%100;
+            b=d%10;
+            l=g-b;
+            l=l/10;
+            k=l*2;
+            if(k>9)
+            {
+                i=k%10;
+                j=k%100;
+                m=j-i;
+                m=m/10;
+                k=i+m;
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+            else
+            {
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+
+        }
+
+        k=0;
+        while(z>0)
+        {
+           g=z%10;
+           b=z%1000;
+           m=z%100;
+           i=b-m;
+           z=z/100 ;
+           k=k+g;
+        }
+
+        f=(k+e);
+
+    while(f>0)
+    {
+        g=f%10;
+        if(g==0)
+        {
+            card(a);
+            break;
+        }
+        else
+        {
+            printf("INVALID\n");
+            break;
+        }
+    }
+    }
+
+
+
+// American Express
+//Starting with 34 variant.
+else if(a >= 340000000000000 && a <= 349999999999999)
+{
+        while(d>0)
+        {
+            g=d%100;
+            b=d%10;
+            l=g-b;
+            l=l/10;
+            k=l*2;
+            if(k>9)
+            {
+                i=k%10;
+                j=k%100;
+                m=j-i;
+                m=m/10;
+                k=i+m;
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+            else
+            {
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+
+        }
+
+        k=0;
+        while(z>0)
+        {
+           g=z%10;
+           b=z%1000;
+           m=z%100;
+           i=b-m;
+           z=z/100 ;
+           k=k+g;
+        }
+
+        f=(k+e);
+
+    while(f>0)
+    {
+        g=f%10;
+        if(g==0)
+        {
+            card(a);
+            break;
+        }
+        else
+        {
+            printf("INVALID\n");
+            break;
+        }
+    }
+    }
+
+
+//Starting with 37 Variant.
+else if(a >= 370000000000000 && a <= 3379999999999999)
+{
+        while(d>0)
+        {
+            g=d%100;
+            b=d%10;
+            l=g-b;
+            l=l/10;
+            k=l*2;
+            if(k>9)
+            {
+                i=k%10;
+                j=k%100;
+                m=j-i;
+                m=m/10;
+                k=i+m;
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+            else
+            {
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+
+        }
+
+        k=0;
+        while(z>0)
+        {
+           g=z%10;
+           b=z%1000;
+           m=z%100;
+           i=b-m;
+           z=z/100 ;
+           k=k+g;
+        }
+
+        f=(k+e);
+
+    while(f>0)
+    {
+        g=f%10;
+        if(g==0)
+        {
+            card(a);
+            break;
+        }
+        else
+        {
+            printf("INVALID\n");
+            break;
+        }
+    }
+    }
+
+
+
+//Master Card.
+else if(a >= 5100000000000000 && a <= 5599999999999999)
+{
+        while(d>0)
+        {
+            g=d%100;
+            b=d%10;
+            l=g-b;
+            l=l/10;
+            k=l*2;
+            if(k>9)
+            {
+                i=k%10;
+                j=k%100;
+                m=j-i;
+                m=m/10;
+                k=i+m;
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+            else
+            {
+                e=e+k;
+                d=d-g;
+                d=d/100;
+            }
+
+        }
+
+        k=0;
+        while(z>0)
+        {
+           g=z%10;
+           b=z%1000;
+           m=z%100;
+           i=b-m;
+           z=z/100 ;
+           k=k+g;
+        }
+
+        f=(k+e);
+
+    while(f>0)
+    {
+        g=f%10;
+        if(g==0)
+        {
+            card(a);
+            break;
+        }
+        else
+        {
+            printf("INVALID\n");
+            break;
+        }
+    }
+}
+
+    else
+    {
+        card(a);
+    }
+}
+
+
+
+
+
+
+//Display Message.
+void card(long a)
+{
+    if (a >= 4000000000000000 && a < 5000000000000000)
+    {
+        printf("VISA\n");
+    }
+
+    else if (a >= 4000000000000 && a < 5000000000000)
+    {
+        printf("VISA\n");
+    }
+
+    else if (a >= 340000000000000 && a <= 349999999999999)
+    {
+        printf("AMEX\n");
+    }
+
+    else if (a >= 370000000000000 && a <= 379999999999999)
+    {
+        printf("AMEX\n");
+    }
+
+    else if (a >= 5100000000000000 && a <= 5599999999999999)
+    {
+        printf("MASTERCARD\n");
+    }
+    else
+    {
+        printf("INVALID\n");
+    }
+}
+/*Test Card No's
+4591150234581171
+4000000000000000
+5555555555554444
+349999999999999
+379999999999999
+4222222222223
+4062901840
+1000000000
+4000000000000*/
