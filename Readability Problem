@@ -1,0 +1,114 @@
+#include<cs50.h>
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#include<math.h>
+
+//Function Prototyping.
+
+float letters(string userip, int word);
+float words(string userip);
+float sentences(string userip, int word);
+
+//Main.
+
+int main()
+{
+    float index, L, S;
+    int final, Word;
+    string text;
+    text = get_string("Text: ");
+
+//Function call.
+
+    Word = words(text);
+    L = letters(text, Word);
+    S = sentences(text, Word);
+//Final compute.
+    index = 0.0588 * L - 0.296 * S - 15.8;
+    final = round(index);
+//results.
+    if (final < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+
+    else if (final > 16)
+    {
+        printf("Grade 16+\n");
+    }
+
+    else
+    {
+        printf("Grade %d\n", final);
+    }
+
+}
+
+//Words.
+float words(string userip)
+{
+    int i, word = 0, l;
+    l = strlen(userip);
+    for (i = 0; i < l; i++)
+    {
+        if ((int)userip[i] == 32)
+        {
+            word++;
+        }
+    }
+    word = word + 1;
+    //printf("\n%d word(s)",word);
+    return word;
+}
+
+//Letters.
+float letters(string userip, int word)
+{
+    int i;
+    float  l, let = 0;
+    float L;
+    l = strlen(userip);
+    for (i = 0; i <= l; i++)
+    {
+        if ((int)userip[i] >= 65 && (int)userip[i] <= 90)
+        {
+            let++;
+        }
+        else if ((int)userip[i] >= 97 && (int)userip[i] <= 122)
+        {
+            let++;
+        }
+    }
+    L = (let / word) * 100.00;
+    //printf("\n%f L",let);
+    // printf("\n%f L",L);
+    // printf("\n%d W",word);
+    return L;
+}
+
+
+//Sentences.
+float sentences(string userip, int word)
+{
+    int i;
+    float l, sent = 0;
+    float S;
+    l = strlen(userip);
+    for (i = 0; i < l; i++)
+    {
+        if ((int)userip[i] == 33 || (int)userip[i] == 46 || (int)userip[i] == 63)
+        {
+            sent++;
+        }
+
+    }
+
+    S = (sent / word) * 100.00;
+
+    //printf("\n%d sentence(s)",sent);
+    // printf("\n%f",sent);
+    // printf("\n%d",word);
+    //printf("\n%f",S);
+    return S;
+}
