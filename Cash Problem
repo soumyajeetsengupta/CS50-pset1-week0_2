@@ -1,0 +1,60 @@
+#include<cs50.h>
+#include<stdio.h>
+#include<math.h>
+
+void exchange(float a);
+int main(void)
+{
+    float change;
+    //Take dolalr i/p.
+    do
+    {
+        change = get_float("Change owned(in dollar): ");
+    }
+    while (change < 0);
+    //Convert to Cent.
+    int cent = round(change * 100);
+    //Pass to function.
+    exchange(cent);
+}
+
+void exchange(float a)
+{
+    int change, coin = 0;
+    change = a;
+    //Algorithm.
+    while (change != 0)
+    {
+        if (a >= 25)
+        {
+            a = a - 25;
+            change = a;
+            coin++;
+        }
+        else if (a < 25 && a >= 10)
+        {
+            a = a - 10;
+            change = a;
+            coin++;
+        }
+        else if (a < 10 && a >= 5)
+        {
+            a = a - 5;
+            change = a;
+            coin++;
+        }
+        else if (a < 5 && a >= 1)
+        {
+            a = a - 1;
+            change = a;
+            coin++;
+        }
+        else
+        {
+            break;
+        }
+        
+    }
+    //Output.
+    printf("\nCoins: %i", coin);
+}
