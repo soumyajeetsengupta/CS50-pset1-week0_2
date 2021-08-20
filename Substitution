@@ -1,0 +1,162 @@
+#include<cs50.h>
+#include<ctype.h>
+#include<stdio.h>
+#include<string.h>
+
+int main(int argc, string argv[])
+{
+    //Part 1.
+    int l = 0, i, j, count = 0, counter = 0;
+
+    //Check argumnet == 2 or not.
+
+    if (argc != 2)
+    {
+        printf("Usage: ./substitution KEY\n");
+        return 1;
+    }
+    else if (strlen(argv[1]) < 26)
+    {
+        printf("Key must contain 26 character\n");
+        return 1;
+    }
+
+
+    //Check key length.
+
+
+    else
+    {
+        //check for non-alphabetic characters.
+        l = strlen(argv[1]);
+        for (j = 0; j < l; j++)
+        {
+            if (isdigit(argv[1][j]))
+            {
+                printf("Key must only contain alphabetic characters.\n");
+                return 1;
+                break;
+            }
+        }
+    }
+
+
+    //Check for repeated characters.
+
+    do
+    {
+        for (i = 0; i < l; i++)
+        {
+
+            if (argv[1][count] == argv[1][i])
+            {
+                counter++;
+                if (counter == 2)
+                {
+                    printf("Key must not contain repeated characters.\n");
+                    return 1;
+                }
+
+            }
+        }
+        count++;
+        counter = 0;
+    }
+    while (count < 26);
+
+    //Part 2.
+
+
+    string Cipher = get_string("plaintext:");
+
+    int k, le, m, n, r, q, x;
+    le = strlen(Cipher);
+    char cipher[le];
+    for (x = 0; x < le; x++)
+    {
+        cipher[x] = Cipher[x];
+    }
+    j = 97;
+    r = 65;
+    int letters[26];
+    int Letters[26];
+
+    for (i = 0; i < 26; i++)
+    {
+        letters[i] = j;
+        j++;
+    }
+
+    for (q = 0; q < 26; q++)
+    {
+        Letters[q] = r;
+        r++;
+    }
+
+    for (k = 0; k < le; k++)
+    {
+        for (m = 0; m < l; m++)
+        {
+
+            if ((int)Cipher[k] == letters[m] || (int)Cipher[k] == Letters[m] || isdigit(Cipher[k]))
+            {
+                if ((int)Cipher[k] == 32)
+                {
+                    continue;
+                }
+                else if (isdigit(Cipher[k]))
+                {
+                    Cipher[k] = cipher[k];
+                }
+                else
+                {
+                    Cipher[k] = m;
+                }
+            }
+        }
+    }
+
+    for (k = 0; k < le; k++)
+    {
+        if (Cipher[k] != 32)
+        {
+            n = Cipher[k];
+            Cipher[k] = argv[1][n];
+        }
+        else if (isspace(Cipher[k]))
+        {
+            Cipher[k] = 32;
+        }
+
+        else if (isdigit(Cipher[k]))
+        {
+            Cipher[k] = cipher[k];
+        }
+
+    }
+    printf("ciphertext: ");
+    for (q = 0; q < le; q++)
+    {
+        if (isupper(cipher[q]))
+        {
+            if (isspace(cipher[q]))
+            {
+                printf(" ");
+            }
+            printf("%c", toupper(Cipher[q]));
+
+        }
+        else if (isdigit(cipher[q]))
+        {
+            printf("%c", cipher[q]);
+        }
+        else
+        {
+            printf("%c", tolower(Cipher[q]));
+        }
+        
+        
+    }
+    printf("\n");
+    
+}
