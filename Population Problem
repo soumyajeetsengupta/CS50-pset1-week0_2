@@ -1,0 +1,39 @@
+#include<cs50.h>
+#include<stdio.h>
+
+void calculate(int a, int b);
+
+int main(void)
+{
+    int start, end;
+
+    //Starting population.
+    do
+    {
+        start = get_int("Enter starting population size of llams: ");
+    }
+    while (start < 9);
+
+    //Ending population.
+    do
+    {
+        end = get_int("Enter ending population size of llams: ");
+    }
+    while (end < start);
+
+    //Passing i/p to function.
+    calculate(start, end);
+}
+//Population Calculation.
+void calculate(int a, int b)
+{
+    int gain, loose, year = 0;
+    while (a < b)
+    {
+        gain = a / 3;
+        loose = a / 4;
+        a = a + (gain - loose);
+        year++;
+    }
+    printf("Years: %d", year);
+}
